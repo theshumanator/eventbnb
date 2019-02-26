@@ -5,25 +5,35 @@ import EventResults from './components/functional/EventResults';
 
 class App extends Component {
   state = {
-    searchValue: ''
+    searchValue: '',
+    events: null
 }
 
+//TODO handle null results from api like supernature
 handleSearchSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state.searchValue);
-    
+    fetch(`https://app.ticketmaster.com/discovery/v2/events.json?countryCode=GB&apikey=uzE9qNVGG7cDi4BnIfRyD94V1F1xmyNg&city=Manchester&keyword=${this.state.searchValue}`)
+    .then(response => response.json())
+    .then(({_embedded: {events}}) => {      
+      this.setState({events});
+    })
+    .catch(error => console.log(error))
+
 }
 
 handleChange = (event) => {        
     this.setState({searchValue: event.target.value})
 }
 
-  render() {
+  render() {    
+    const {events} = this.state;
     return (
       <div className="App">
        <Title/>
        <Searchbox handleSearchSubmit={ this.handleSearchSubmit} handleChange={this.handleChange}/>
-       <EventResults/>       
+       {/*  Passing down this.state.events as props to eventresults component */}
+       {events && <EventResults events={events}/>}
+        
 
       </div>
     );

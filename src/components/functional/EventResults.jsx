@@ -3,10 +3,13 @@ import SingleEvent from './SingleEvent';
 import Pagination from './Pagination';
 import EventMap from './EventMap';
 
-const EventResults = () => {
+const EventResults = (props) => {
     return (
         <div>
-            <SingleEvent/>
+            <ul>
+                {props.events.map(event => <SingleEvent key={event.id} event={event}/>)}                
+            </ul>
+            
             <Pagination/>
             <EventMap/>
         </div>
