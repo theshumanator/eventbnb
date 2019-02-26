@@ -1,25 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Title from './components/functional/Title';
+import Searchbox from './components/functional/Searchbox';
+import EventResults from './components/functional/EventResults';
 
 class App extends Component {
+  state = {
+    searchValue: ''
+}
+
+handleSearchSubmit = (event) => {
+    event.preventDefault();
+    console.log(this.state.searchValue);
+    
+}
+
+handleChange = (event) => {        
+    this.setState({searchValue: event.target.value})
+}
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+       <Title/>
+       <Searchbox handleSearchSubmit={ this.handleSearchSubmit} handleChange={this.handleChange}/>
+       <EventResults/>       
+
       </div>
     );
   }
