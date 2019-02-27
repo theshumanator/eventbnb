@@ -6,6 +6,15 @@ body {
   /* border: solid red 1px; */
 }
 
+#mapid {
+  height: 300px;
+}
+
+.leaflet-container {
+  height: 400px;
+  width: 800px;
+}
+
 .App {
   margin:1rem;
 }

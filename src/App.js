@@ -8,8 +8,6 @@ import EventMap from './components/functional/EventMap';
 
 // TODO what happens if user submits "" for an event, currently get all events back.
 // TODO add error message if keyword does not match any events
-// TODO can not goto prevPage -1 etc
-// NEXT need to FETCH on submit handlers for prev/next buttons
 
 class App extends Component {
   state = {

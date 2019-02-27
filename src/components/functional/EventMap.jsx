@@ -1,9 +1,10 @@
 import React from 'react';
+import SimpleExample from './SimpleExample';
 
 const EventMap = () => {
     return (
-        <div>
-            EventMap
+        <div id="container">
+            <SimpleExample/>
         </div>
     )
 }
