@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
-import { Map as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Map as LeafletMap, TileLayer, Marker } from 'react-leaflet';
+import EventPopup from './EventPopup';
 
 class SimpleExample extends Component {
     state = {
         lat: 53.4808,
         lng: -2.2426,
-        zoom: 13,
+        zoom: 6,
       }
 
   render() {     
@@ -29,9 +30,10 @@ class SimpleExample extends Component {
           url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
         />
         <Marker position={position}>
-          <Popup>
-            Popup for any custom information.
-          </Popup>
+          <EventPopup/>
+        </Marker>
+        <Marker position={[51.5074, -0.1278]}>
+          <EventPopup/>
         </Marker>
       </LeafletMap>
     );
