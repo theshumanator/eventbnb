@@ -75,16 +75,20 @@ class App extends Component {
   render() {
     const { events } = this.state;
     return (
-      <div className="App">     
-        <Title />        
-        <Searchbox handleSearchSubmit={this.handleSearchSubmit} handleChange={this.handleChange} />
-        <Pagination handlePreviousPage={this.handlePreviousPage} handleNextPage={this.handleNextPage} currentPage={this.state.currentPage} totalPages={this.state.totalPages} />      
-        <div className="app-left">          
+
+      <div className="App grid-container">     
+        <div className="title">
+          <Title />        
+          <Searchbox handleSearchSubmit={this.handleSearchSubmit} handleChange={this.handleChange} />
+          <Pagination handlePreviousPage={this.handlePreviousPage} handleNextPage={this.handleNextPage} currentPage={this.state.currentPage} totalPages={this.state.totalPages} />      
+        </div>
+
+        <div className="EventResults">          
           {/*  Passing down this.state.events as props to eventresults component */}
           {events && <EventResults events={events} />}
             
         </div> 
-        <div className="app-right">
+        <div className="EventsMap">
         {events && <EventMap events={events} />}
         </div>
         
