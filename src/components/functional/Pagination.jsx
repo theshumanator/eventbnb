@@ -17,7 +17,7 @@ const Pagination = (props) => {
     if (currentPage === totalPages - 1) nextButtonDisabled = true;
 
     return (
-        <div>
+        <div className="pagination">
             <button disabled={prevButtonDisabled} onClick={props.handlePreviousPage}>Previous</button>
             <button disabled={nextButtonDisabled} onClick={props.handleNextPage}>Next</button>
         </div >

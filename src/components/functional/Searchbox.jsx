@@ -1,15 +1,15 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 class Searchbox extends Component {
-   
+
     render() {
         return (
-            <div>
+            <div className="search-box">
                 <form onSubmit={this.props.handleSearchSubmit}>
                     <label htmlFor="searchInput">Search for events </label>
-                    <input id="searchInput" type="text" onChange={this.props.handleChange}  />   
-                    <input type="submit"/>
-                </form>            
+                    <input id="searchInput" type="text" onChange={this.props.handleChange} />
+                    <input type="submit" />
+                </form>
             </div>
         )
     }

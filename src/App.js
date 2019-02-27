@@ -3,6 +3,8 @@ import Title from './components/functional/Title';
 import Searchbox from './components/functional/Searchbox';
 import EventResults from './components/functional/EventResults';
 import Pagination from './components/functional/Pagination';
+import EventMap from './components/functional/EventMap';
+
 
 // TODO what happens if user submits "" for an event, currently get all events back.
 // TODO add error message if keyword does not match any events
@@ -81,6 +83,7 @@ class App extends Component {
         {/*  Passing down this.state.events as props to eventresults component */}
         {events && <EventResults events={events} />}
         <Pagination handlePreviousPage={this.handlePreviousPage} handleNextPage={this.handleNextPage} currentPage={this.state.currentPage} totalPages={this.state.totalPages} />
+        <EventMap />
       </div>
     );
   }
