@@ -4,8 +4,8 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 20vh 75vh;
+  grid-template-columns: 1fr 1fr;  /* half half */
+  grid-template-rows: 25vh 75vh;
   grid-template-areas: "title title" "EventResults EventsMap";
  }
  
@@ -24,15 +24,12 @@ body {
   /* border: solid red 1px; */
 }
 
-#mapid {
-  height: 300px;
-}
 
 .leaflet-container {
-  height: 400px;
-  width: 800px;
+  /* to fill the CSS grid cell */
+  height: 100%;
+  width: 100%;
 }
-
 
 
 h1 {
