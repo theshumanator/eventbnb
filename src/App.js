@@ -14,7 +14,8 @@ class App extends Component {
     searchValue: '',
     events: null,
     currentPage: 0,
-    totalPages: 0
+    totalPages: 0,
+    isGetNewPage: false
   }
 
   handleSearchSubmit = (event) => {
@@ -24,10 +25,10 @@ class App extends Component {
       .then((data) => {
 
         if (data.page.totalElements === 0) {
-          this.setState({ events: null })
+          this.setState({ events: null, isGetNewPage: false })
         } else {
           const eventsObj = data._embedded.events;
-          this.setState({ events: eventsObj, totalPages: data.page.totalPages });
+          this.setState({ events: eventsObj, totalPages: data.page.totalPages, isGetNewPage: false });
         }
       })
       .catch(error => console.log(error))
@@ -36,21 +37,40 @@ class App extends Component {
 
   handleChange = (event) => {
 
-    this.setState({ searchValue: event.target.value })
+    this.setState({ searchValue: event.target.value, isGetNewPage: false })
   }
 
   handlePreviousPage = () => {
 
     this.setState((prevState) => {
-      return { currentPage: prevState.currentPage - 1 }
+      return { currentPage: prevState.currentPage - 1, isGetNewPage: true }
     })
   }
 
   handleNextPage = () => {
     this.setState((prevState) => {
-      return { currentPage: prevState.currentPage + 1 }
+      return { currentPage: prevState.currentPage + 1, isGetNewPage: true }
     })
   }
+
+  componentDidUpdate = () => {
+    if (this.state.isGetNewPage) {
+      fetch(`https://app.ticketmaster.com/discovery/v2/events.json?countryCode=GB&apikey=uzE9qNVGG7cDi4BnIfRyD94V1F1xmyNg&city=Manchester&keyword=${this.state.searchValue}&page=${this.state.currentPage}`)
+        .then(response => response.json())
+        .then((data) => {
+
+          if (data.page.totalElements === 0) {
+            this.setState({ events: null })
+          } else {
+            const eventsObj = data._embedded.events;
+            this.setState({ events: eventsObj, totalPages: data.page.totalPages });
+          }
+        })
+        .catch(error => console.log(error))
+    }
+  }
+
+
 
   render() {
     const { events } = this.state;
@@ -60,7 +80,7 @@ class App extends Component {
         <Searchbox handleSearchSubmit={this.handleSearchSubmit} handleChange={this.handleChange} />
         {/*  Passing down this.state.events as props to eventresults component */}
         {events && <EventResults events={events} />}
-        <Pagination handlePreviousPage={this.handlePreviousPage} handleNextPage={this.handleNextPage} />
+        <Pagination handlePreviousPage={this.handlePreviousPage} handleNextPage={this.handleNextPage} currentPage={this.state.currentPage} totalPages={this.state.totalPages} />
       </div>
     );
   }
