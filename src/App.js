@@ -20,7 +20,7 @@ class App extends Component {
 
   handleSearchSubmit = (event) => {
     event.preventDefault();
-    fetch(`https://app.ticketmaster.com/discovery/v2/events.json?countryCode=GB&apikey=uzE9qNVGG7cDi4BnIfRyD94V1F1xmyNg&city=Manchester&keyword=${this.state.searchValue}&page=${this.state.currentPage}`)
+    fetch(`https://app.ticketmaster.com/discovery/v2/events.json?countryCode=GB&apikey=XXX&city=Manchester&keyword=${this.state.searchValue}&page=${this.state.currentPage}`)
       .then(response => response.json())
       .then((data) => {
 
@@ -55,7 +55,7 @@ class App extends Component {
 
   componentDidUpdate = () => {
     if (this.state.isGetNewPage) {
-      fetch(`https://app.ticketmaster.com/discovery/v2/events.json?countryCode=GB&apikey=uzE9qNVGG7cDi4BnIfRyD94V1F1xmyNg&city=Manchester&keyword=${this.state.searchValue}&page=${this.state.currentPage}`)
+      fetch(`https://app.ticketmaster.com/discovery/v2/events.json?countryCode=GB&apikey=xxx&city=Manchester&keyword=${this.state.searchValue}&page=${this.state.currentPage}`)
         .then(response => response.json())
         .then((data) => {
 
