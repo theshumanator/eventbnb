@@ -7,7 +7,7 @@ import EventPopup from './EventPopup';
 class EventMap extends Component {
   state = {
     lat: 53.4808,
-    lng: -2.2426,
+    lon: -2.2426,
     zoom: 13,
   }
 
